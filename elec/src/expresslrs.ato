@@ -1,2 +1,22 @@
-module Expresslrs:
-    signal gnd
+import STM32L432KBU6 from "stm32l432kbu6/elec/src/stm32l432kbu6.ato"
+import SX1280 from "sx1280/elec/src/sx1280.ato"
+
+
+module ExpressLRS:
+    power  = new Power
+    uart = new UART
+    micro = new STM32L432KBU6
+    radio = new SX1280
+
+    # external connections
+    power ~ micro.power
+    power ~ radio.power
+    uart ~ micro.uart1
+
+    # internal connections
+    radio.spi ~ micro.spi1
+    radio.dio1 ~ micro.PA10
+    radio.dio2 ~ micro.PA9
+    radio.dio3 ~ micro.PA8
+    radio.busy ~ micro.PA11
+    radio.nreset ~ micro.PB4

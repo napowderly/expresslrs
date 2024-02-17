@@ -1,6 +1,8 @@
 ato-version: ^0.2.0
 builds:
   default:
-    entry: elec/src/expresslrs.ato:Expresslrs
+    entry: elec/src/expresslrs.ato:ExpressLRS
 dependencies:
 - generics
+- stm32l432kbu6
+- sx1280imltrt
